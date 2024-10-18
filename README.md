@@ -5,6 +5,8 @@
 
 ![image](https://github.com/Xian37/group9_project/blob/main/Game_Picture/start.png)
 ![这是一个示例 GIF](DOCS/bomb.gif)
+
+# Class Diagram of main program
 ![Class Diagram](DOCS/classdiagram.png)
 # 遊戲規則：
 
