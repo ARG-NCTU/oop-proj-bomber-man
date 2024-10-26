@@ -43,19 +43,13 @@ $ cd oop-proj-bomber-man
 ```
 Build the docker image first (team leader only)
 ```
-./docker_build
+$ ./docker_build
 ```
 The process requires docker hub account. There will be messages about loggin in to docker hub account before you build the image.
 
 After the images is built and pushed to docker hub, both team leader and member can run
 ```
-$ source Docker/build.sh
-```
-過程中若出現需要docker login，請使用自己的Docker Hub account登入
-
-完成後再執行
-```
-$ source Docker/docker_run.sh 或 $ ./docker_run
+$ ./docker_run
 ```
 If the docker container is in process, please run
 ```
