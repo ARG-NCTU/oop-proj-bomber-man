@@ -1,105 +1,67 @@
-# NYCU Object-Oriented Programming 112
-# Welcome to Group 9's Project page ! 🙌
-# 這是一款 Bomber Man 爆爆王遊戲
-# ＊用Windows系統開啟後需要將輸入法切成英文，Ubuntu則不用＊
-
-![image](https://github.com/Xian37/group9_project/blob/main/Game_Picture/start.png)
-![这是一个示例 GIF](DOCS/bomb.gif)
+# Game Demo
+![Game Demo GIF](docs/bomb.gif)
 
 # Class Diagram of main program
-![Class Diagram](DOCS/classdiagram.png)
-# 遊戲規則：
+![Class Diagram](docs/classdiagram.png)
 
-# 	1. 六個角色：
+# Tasks before running the game
+## Team Leader
+1. Create a **Docker Hub account**.
+2. Log in your docker hub and create a new repository to store the built images. Make sure to set it to `Public`
+3. Enter the directory `~/oop-proj-bomber-man/Docker`
+4. Enter your own docker hub account and repository in `build.sh`, `docker_run.sh` and `docker_join.sh`
+5. Let your team members know where the built image will be.
 
-		三個Player角色有三個屬性: 血量、速度與炸彈傷害
-  		且每一個會有一項屬性特別突出，而敵人Enemy則為均衡型角色，且玩家的角色會綁定敵人是哪個
-    	Player vs Enemy
-		(1) Fox 竹狐  VS 熊貓
-		(2) Monkey 山道猴子 VS 金色長髮男 
-		(3) GuGu 菇菇 VS 奇怪生物
-	
-#	2. 三個地圖：
+## Team Member
+1. Create a **Docker Hub account**.
+2. Log in your docker hub.
+3. Enter the directory `~/oop-proj-bomber-man/Docker`
+3. Enter your team leader's docker hub account, repository and tag name **ONLY** in the `docker_run.sh` and `docker_join.sh`
 
-		每個地圖的路面、可破壞牆、不可破壞牆都有根據主題特別設計
-  
-		(1) FOREST 森林
-		(2) OCEAN 海洋
-		(3) DESERT 沙漠
-	
-#	3. 四種道具：
+# Use Docker As Root
+First open the terminal and type
+```
+$ sudo groupadd -f docker
+```
+Then type the following usermod command to add the active user to the **docker** group
+```
+$ sudo usermod -aG docker $USER
+```
+Apply the group changes to the current terminal session by typing
+```
+$ newgrp docker
+```
+Finally check if the **docker** group is in the list of user groups
+```
+$ groups
+```
 
-		地圖初始即會掉落道具，遊玩過程中也會每五秒以低機率掉落道具
-		且以下道具掉落皆機率不同
-  
-		(1) 無敵星星： 無敵 5 秒 , 血量會變彩色
-		(2) 加速閃電：加速 5 秒
-		(3) 補血包： + 50 HP
-		(4) 地雷： 觸發後 1 s 後爆炸
-		
-#	4. 操作方式：
+# How to run the game
+First enter the repo
+```
+$ cd oop-proj-bomber-man
+```
+Build the docker image first (team leader only)
+```
+./docker_build
+```
+The process requires docker hub account. There will be messages about loggin in to docker hub account before you build the image.
 
-		(1) 按上下左右鍵操控角色 （初始位置在左上角） 
-		(2) 預設最多兩顆炸彈，且有冷卻時間 3s，按空白鍵放置炸彈，被炸到會 -25 HP
-  
-#  	5.遊戲規則：
-   
-		(1) 不可穿越障礙物，需炸開牆形成路面才可以
-		(2) 牆壁有分 1. 可用炸彈破壞 2. 不可破壞（兩者牆壁圖示不同以作區分）
-		(3) 有 5 隻敵人，且會自動移動與躲避炸彈
-  		(4) 倒數 100 秒結束遊戲
-  
-# 	6. 勝利條件：
-   
-		(1) 炸完全部敵人則玩家Player獲勝，自己死亡則敵人Enemy獲勝
-		(2) 倒數時間到時，血量最多者獲勝
+After the images is built and pushed to docker hub, both team leader and member can run
+```
+$ source Docker/build.sh
+```
+過程中若出現需要docker login，請使用自己的Docker Hub account登入
 
-# 	7. 遊戲流程：
-
-		(1) 開始畫面
-  		(2) 按下 1 , 2 , 3 選角色
-  		(3) 按下 1 , 2 , 3 選地圖
-    		(4) 開始遊戲
-		(5) 結束頁面
-  		(6) 按下 Q 離開 或 按下 R 重新開始 
-		(7) 輸出統計資料 (printed on the Terminal & output an game_results.txt file)
- 
-#  	8. 程式架構：
-		
-     		- main.py
-       		- testgame.py
-	 	- constants.py
-  
-       		- Some classes we've used : 
-	 
-	   		(1) GameObject
-		   		1. Player
-					a. Fox 
-					b. Monkey
-		   			c. Cucu (GuGu)
-		      		2. Enemy 敵人
-		 		3. Bomb 炸彈
-	    			4. Flame 爆炸烈焰
-	       			5. HealthItem 血包
-		  		6. InvincibleItem 無敵
-	     			7. LandmineItem 地雷
-				8. SpeedItem 加速
-	   
-			(2) Game # 主控整個遊戲的道具、敵人、刷新、圖形繪製
-
-
-# 玩家勝利畫面
-![image](https://github.com/Xian37/group9_project/blob/main/Game_Picture/gamewin.png)
-# 
-# 玩家失敗畫面
-![image](https://github.com/Xian37/group9_project/blob/main/Game_Picture/gameover.png)
-# ...
-
-更詳細之講解請見:
-https://www.canva.com/design/DAGIkv4tLPw/EY_2W5KeQMS2oQHn4Nd75w/edit?utm_content=DAGIkv4tLPw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
-
-
-
-	現在時間 6/17 5:00 am
-	我的肝快壞了 by Xian37
-	遊戲是組員們頭腦、時間及配合 GPT 輔助自己做出來的心血，圖片也是自己去背加框，謝謝支持與遊玩！
+完成後再執行
+```
+$ source Docker/docker_run.sh 或 $ ./docker_run
+```
+If the docker container is in process, please run
+```
+$ ./docker_join
+```
+Run this command to enter the game after the container is running
+```
+# python3 main.py
+```
