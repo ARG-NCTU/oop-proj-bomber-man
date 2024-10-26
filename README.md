@@ -65,3 +65,6 @@ Run this command to enter the game after the container is running
 ```
 # python3 main.py
 ```
+
+# Game Rules
+[Game Rules](Game_Rules.md)
