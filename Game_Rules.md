@@ -4,7 +4,7 @@
 # ＊用Windows系統開啟後需要將輸入法切成英文，Ubuntu則不用＊
 
 ![image](https://github.com/Xian37/group9_project/blob/main/Game_Picture/start.png)
-![这是一个示例 GIF](DOCS/bomb.gif)
+![这是一个示例 GIF](docs/bomb.gif)
 
 # 遊戲規則：
 
